@@ -5,12 +5,15 @@ import PostsMiddlewares from '../../middlewares/posts/posts';
 import { Comment as CommentType } from '../../middlewares/posts/types';
 import { useRouteInfo } from 'expo-router/build/hooks';
 import Comment from '../../components/Comment';
+import UsersMiddlewares from '../../middlewares/users/users';
+import { User } from '../../middlewares/users/types';
 
 const Comments = () => {
   const { id } = useLocalSearchParams();
   const routeInfo = useRouteInfo();
   routeInfo.pathname = "comments";
   const [comments, setComments] = useState<CommentType[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   const getComments = async () => {
     await PostsMiddlewares.getCommentsByPostId({
@@ -21,16 +24,28 @@ const Comments = () => {
     })
   }
 
+  const getUsers = async () => {
+    await UsersMiddlewares.getUsers({
+      successCallback: (response) => {
+        setUsers(response.data);
+      },
+    })
+  }
+
   useEffect(() => {
     getComments();
+    getUsers();
   }, [])
 
   const renderItem = ({ item }: { item: CommentType }) => {
     return (
       <Comment
         avatar="https://i.pravatar.cc/64"
-        name={item.name}
         comment={item.body}
+        firstname={users[item.id - 1]?.firstname}
+        lastname={users[item.id - 1]?.lastname}
+        email={users[item.id - 1]?.email}
+        phone={users[item.id - 1]?.phone}
       />
     )
   }
@@ -48,4 +63,4 @@ const Comments = () => {
   )
 }
 
-export default Comments
+export default Comments;

@@ -1,4 +1,4 @@
-import { Slot, usePathname } from "expo-router";
+import { Slot } from "expo-router";
 
 import "../../global.css";
 import PageContainer from "../components/PageContainer";
