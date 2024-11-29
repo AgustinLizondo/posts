@@ -20,16 +20,16 @@ const Header = (props: HeaderProps) => {
       className={cn("flex flex-row items-center p-4", className)}
       {...rest}
     >
-      {routeInfo.pathname !== '/'
-        ? (<Pressable onPress={() => router.back()} className="p-2">
+      {routeInfo.pathname !== "/"
+        ? (<Pressable onPress={() => router.back()} className="p-2" testID="back-button">
           <Ionicons name="chevron-back-outline" size={24} />
         </Pressable>)
         : <View className="w-10" />}
-      <Text className="flex flex-1 font-bold overflow-hidden text-ellipsis line-clamp-1">
-        {routeInfo.pathname === '/' ? 'home' : routeInfo.pathname.replace('/', '')}
+      <Text className="flex flex-1 font-bold overflow-hidden text-ellipsis line-clamp-1" testID="page-title">
+        {routeInfo.pathname === "/" ? "home" : routeInfo.pathname.replace("/", "")}
       </Text>
       {showFavorites
-        ? (<Link href="/favorites" className="p-2">
+        ? (<Link href="/favorites" className="p-2" testID="favorites-button">
           <Ionicons name="bookmark" size={24} />
         </Link>)
         : <View className="w-10" />}

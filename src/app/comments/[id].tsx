@@ -11,6 +11,7 @@ import { User } from '../../middlewares/users/types';
 const Comments = () => {
   const { id } = useLocalSearchParams();
   const routeInfo = useRouteInfo();
+  console.log(routeInfo)
   routeInfo.pathname = "comments";
   const [comments, setComments] = useState<CommentType[]>([]);
   const [users, setUsers] = useState<User[]>([]);

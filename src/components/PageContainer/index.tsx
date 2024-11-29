@@ -13,6 +13,7 @@ const PageContainer = (props: PageContainerProps) => {
   return (
     <SafeAreaView
       className={cn("flex flex-1", className)}
+      testID="container"
       {...rest}
     >
       {children}

@@ -69,6 +69,7 @@ const Home = () => {
         onChangeText={setSearchValue}
         placeholder="Search posts..."
         className="bg-gray-100 rounded-full p-4 mx-4 border border-gray-300"
+        testID="search-input"
       />
       <FlatList
         data={filteredPosts}
@@ -76,6 +77,7 @@ const Home = () => {
         keyExtractor={item => item.id.toString()}
         ItemSeparatorComponent={() => <View className="w-full h-0.5 bg-gray-200" />}
         ListEmptyComponent={() => <Text className="text-center text-gray-500 p-4">No posts found</Text>}
+        testID='flatlist'
       />
     </View>
   )

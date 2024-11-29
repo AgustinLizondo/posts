@@ -26,9 +26,10 @@ const Comment = (props: CommentProps) => {
           borderRadius={16}
           width={32}
           height={32}
+          testID='avatar'
         />
         <View className="flex flex-1 flex-col">
-          <Text className="text-semibold">
+          <Text className="text-semibold" testID="user-data">
             {firstname} {lastname}, {email}, {phone}
           </Text>
           <Text className="text-[12px] text-gray-500">
