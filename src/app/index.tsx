@@ -6,7 +6,6 @@ import { addFavorite, getFavorites, removeFavorite } from '../utils/AsyncStorage
 import Post from '../components/Post';
 
 const Home = () => {
-  const [searchValue, setSearchValue] = useState('');
   const [posts, setPosts] = useState<PostType[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<PostType[]>(posts);
   const [favorites, setFavorites] = useState<PostType[]>([]);
@@ -30,11 +29,11 @@ const Home = () => {
     getFavoritesPosts();
   }, [])
 
-  useEffect(() => {
+  const setSearchValue = (value: string) => {
     setFilteredPosts(
-      posts.filter(post => post.title.toLowerCase().includes(searchValue.toLowerCase()) || post.content.toLowerCase().includes(searchValue.toLowerCase()))
+      posts.filter(post => post.title.toLowerCase().includes(value.toLowerCase()) || post.content.toLowerCase().includes(value.toLowerCase()))
     )
-  }, [searchValue])
+  }
 
   const renderItem = ({ item }: { item: PostType}) => {
     const isFavorite = favorites.some((fav) => fav.id === item.id);
@@ -67,7 +66,6 @@ const Home = () => {
   return (
     <View className="flex flex-1">
       <TextInput
-        value={searchValue}
         onChangeText={setSearchValue}
         placeholder="Search posts..."
         className="bg-gray-100 rounded-full p-4 mx-4 border border-gray-300"
