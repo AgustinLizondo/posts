@@ -2,7 +2,7 @@ import { act, render } from '@testing-library/react-native';
 import Home from '../app';
 
 describe('homescreen', () => {
-  it('renders HomeScreen', () => {
+  it('renders input comp', () => {
     const { getByTestId } = render(<Home />);
     expect(getByTestId('search-input')).toBeTruthy();
   });
