@@ -1,6 +1,6 @@
 import React from 'react'
 import { PostProps } from './types'
-import { Pressable, Text, View } from 'react-native'
+import { Image, Pressable, Text, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 
@@ -24,11 +24,26 @@ const Post = (props: PostProps) => {
     onPress={onItemPress}
     {...rest}
   >
-    <View className="flex flex-col w-[75%]">
-      <Text className="text-lg font-bold text-black overflow-hidden text-ellipsis line-clamp-1">
+    <View className="flex flex-col gap-4 w-[75%]">
+      <Text className="text-xl font-bold text-black overflow-hidden text-ellipsis line-clamp-1">
         {item.title}
       </Text>
-      <Text className="text-sm text-black">
+      <View>
+        <View className="flex flex-row gap-2">
+          <Image
+            source={{
+              uri: item.image,
+            }}
+            width={64}
+            height={64}
+            borderRadius={16}
+          />
+          <Text className="flex flex-1 text-ellipsis line-clamp-4">
+            {item.content}
+          </Text>
+        </View>
+      </View>
+      <Text className="text-sm text-gray-400">
         {item.publishedAt}
       </Text>
     </View>
